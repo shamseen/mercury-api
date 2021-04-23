@@ -26,8 +26,18 @@ class Runner(models.Model):
 class Race(models.Model):
     year = models.IntegerField()
     # scalability: name, location (city/state/country)
+    def __str__(self):
+        return self.year
 
 ### Junction table for M:n relationship
 class Result(models.Model):
-    runner_id = models.PositiveIntegerField();
-    race_year = models.PositiveIntegerField();
+
+     runner_id = models.ForeignKey(
+        Runner,                     # table name
+        on_delete=models.CASCADE,   # deep delete
+        related_name='comments')    # 1 post => many comments
+
+    race_year = models.ForeignKey(
+        Race,                       # table name
+        on_delete=models.CASCADE,   # deep delete
+        related_name='comments')    # 1 post => many comments
