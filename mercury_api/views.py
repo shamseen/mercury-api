@@ -28,3 +28,13 @@ class ResultViewSet(viewsets.ModelViewSet):
     serializer_class = ResultSerializer
     # optional permission class set permission level
     permission_classes = [permissions.AllowAny]
+
+# APIView tutorial: https://medium.com/the-andela-way/creating-a-django-api-using-django-rest-framework-apiview-b365dca53c1d
+# class ResultByYearViewSet(viewsets.APIView):
+#     # selectors from https://concisecoder.io/2018/12/23/how-to-optimize-your-django-rest-viewsets/
+#     queryset = (
+#         Results.objects.
+#     ) 
+
+    # def get(self, request):
+
