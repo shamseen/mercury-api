@@ -7,7 +7,9 @@ from mercury_api.views import RunnerViewSet, RaceViewSet, ResultViewSet
 router = routers.DefaultRouter()
 
 # register viewsets/endpoint GUI
-router.register(r'api', RunnerViewSet) #register/api routes
+router.register(r'runner', RunnerViewSet) #get all runners routes
+router.register(r'result', ResultViewSet)
+router.register(r'race', RaceViewSet)
 
 
 urlpatterns = [
