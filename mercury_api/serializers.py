@@ -1,32 +1,37 @@
 from .models import Runner, Race, Result
 from rest_framework import serializers
 
-class RunnerSerializer(serializers.HyperlinkedModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-
+class RunnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Runner
 
         # showing all for now.
-        # i have no idea where this url came from
-        exclude = ['url'];
+        fields = '__all__'
+class RunnerResultSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Runner
 
-class RaceSerializer(serializers.HyperlinkedModelSerializer):
+        fields = ['id', 'first_name', 'last_name', 'city', 'state', 'real_time']
+
+class RaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Race
 
         # fields shown in output => showing all for now.
-        fields = ['year'];
+        fields = '__all__'
 
 class ResultSerializer(serializers.ModelSerializer):
+    # printing the year instead of the id
+    race = RaceSerializer()
+
     # nesting all runners within a cohort
-    runner = RunnerSerializer()
+    runners = RunnerResultSerializer(source="runner", many=True)
 
     class Meta:
         model = Result
 
         # fields shown in output
-        fields = ('id', 'race_year', 'cohort_id', 'runner')
+        fields = ('cohort', 'race', 'runners')
 
         ### Example JSON ###
         # [
