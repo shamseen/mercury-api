@@ -37,4 +37,3 @@ class ResultViewSet(viewsets.ModelViewSet):
 #     ) 
 
     # def get(self, request):
-

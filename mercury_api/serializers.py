@@ -13,16 +13,8 @@ class RunnerResultSerializer(serializers.ModelSerializer):
 
         fields = ['id', 'first_name', 'last_name', 'city', 'state', 'real_time']
 
-class RaceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Race
-
-        # fields shown in output => showing all for now.
-        fields = '__all__'
 
 class ResultSerializer(serializers.ModelSerializer):
-    # printing the year instead of the id
-    race = RaceSerializer()
 
     # nesting all runners within a cohort
     runners = RunnerResultSerializer(source="runner", many=True)
@@ -31,7 +23,17 @@ class ResultSerializer(serializers.ModelSerializer):
         model = Result
 
         # fields shown in output
-        fields = ('cohort', 'race', 'runners')
+        fields = ['cohort', 'runners']
+
+
+class RaceSerializer(serializers.ModelSerializer):
+    results = ResultSerializer(many=True)
+    
+    class Meta:
+        model = Race
+
+        # fields shown in output => showing all for now.
+        fields = ['id', 'year', 'results']
 
         ### Example JSON ###
         # [
