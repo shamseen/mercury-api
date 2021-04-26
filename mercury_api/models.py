@@ -12,7 +12,7 @@ class Runner(models.Model):
     real_time = models.DurationField(null=True)
 
     # Not in results table
-    goal_time = models.DurationField()
+    # goal_time = models.DurationField() # messing with form POST
     email = models.EmailField(max_length=100)
     wheelchair = models.BooleanField(default=False)
     dob = models.DateField()
