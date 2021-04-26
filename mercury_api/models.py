@@ -9,7 +9,7 @@ class Runner(models.Model):
     last_name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    real_time = models.DurationField()
+    real_time = models.DurationField(null=True)
 
     # Not in results table
     goal_time = models.DurationField()
