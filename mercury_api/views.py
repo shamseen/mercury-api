@@ -1,8 +1,10 @@
-from .models import Runner, Race, Result
+# from .models import Runner, Race, Result
+from .models import Runner, Race
 from rest_framework import viewsets
 from rest_framework import permissions
 
-from .serializers import RunnerSerializer, RaceSerializer, ResultSerializer
+# from .serializers import RunnerSerializer, RaceSerializer, ResultSerializer
+from .serializers import RunnerSerializer, RaceSerializer
 #GUI to test API without frontend built out
 
 class RunnerViewSet(viewsets.ModelViewSet):
@@ -21,13 +23,13 @@ class RaceViewSet(viewsets.ModelViewSet):
     # optional permission class set permission level
     permission_classes = [permissions.AllowAny]
 
-class ResultViewSet(viewsets.ModelViewSet):
-    ## The Main Query for the index route
-    queryset = Result.objects.all()
-    # The class used to serialize model
-    serializer_class = ResultSerializer
-    # optional permission class set permission level
-    permission_classes = [permissions.AllowAny]
+# class ResultViewSet(viewsets.ModelViewSet):
+#     ## The Main Query for the index route
+#     queryset = Result.objects.all()
+#     # The class used to serialize model
+#     serializer_class = ResultSerializer
+#     # optional permission class set permission level
+#     permission_classes = [permissions.AllowAny]
 
 # APIView tutorial: https://medium.com/the-andela-way/creating-a-django-api-using-django-rest-framework-apiview-b365dca53c1d
 # class ResultByYearViewSet(viewsets.APIView):

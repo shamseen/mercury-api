@@ -1,4 +1,5 @@
-from .models import Runner, Race, Result
+# from .models import Runner, Race, Result
+from .models import Runner, Race
 from rest_framework import serializers
 
 class RunnerSerializer(serializers.ModelSerializer):
@@ -7,33 +8,37 @@ class RunnerSerializer(serializers.ModelSerializer):
 
         # showing all for now.
         fields = '__all__'
+
 class RunnerResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Runner
 
-        fields = ['id', 'first_name', 'last_name', 'city', 'state', 'real_time']
+    # fields = ['id', 'first_name', 'last_name', 'city', 'state', 'real_time']
+    fields = ['id', 'cohort_id' 'first_name', 'last_name', 'real_time', 'city', 'state', 'race_id']
 
 
-class ResultSerializer(serializers.ModelSerializer):
+# class ResultSerializer(serializers.ModelSerializer):
 
-    # nesting all runners within a cohort
-    runners = RunnerResultSerializer(source="runner", many=True)
+#     # nesting all runners within a cohort
+#     runners = RunnerResultSerializer(source="runner", many=True)
 
-    class Meta:
-        model = Result
+#     class Meta:
+#         model = Result
 
-        # fields shown in output
-        fields = ['cohort', 'runners']
+#         # fields shown in output
+#         fields = ['cohort', 'runners']
 
 
 class RaceSerializer(serializers.ModelSerializer):
-    results = ResultSerializer(many=True)
+    # results = ResultSerializer(many=True)
+    runners = RunnerSerializer(many=True)
     
     class Meta:
         model = Race
 
         # fields shown in output => showing all for now.
-        fields = ['id', 'year', 'results']
+        # fields = ['id', 'year', 'results']
+        fields = ['id', 'year', 'runners']
 
         ### Example JSON ###
         # [
