@@ -1,0 +1,1 @@
+web: gunicorn mercury_config.wsgi
