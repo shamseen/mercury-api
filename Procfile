@@ -1,1 +1,1 @@
-web: gunicorn todoproject.wsgi
+web: gunicorn mercury_config.wsgi
